@@ -10,6 +10,11 @@
  * Date: @DATE 
  */
 (function($) { 	
+
+	function isIE(){
+		return $('html').hasClass('ie');
+	}
+
 	// static constructs
 	$.tools = $.tools || {version: '@VERSION'};
 	
@@ -69,7 +74,7 @@
 		fade: [
 			function(done) {
 				var conf = this.getConf();
-				if (!$.browser.msie || conf.fadeIE) {
+				if (!isIE() || conf.fadeIE) {
 					this.getTip().fadeTo(conf.fadeInSpeed, conf.opacity, done);
 				}
 				else {
@@ -79,7 +84,7 @@
 			},
 			function(done) {
 				var conf = this.getConf();
-				if (!$.browser.msie || conf.fadeIE) {
+				if (!isIE() || conf.fadeIE) {
 					this.getTip().fadeOut(conf.fadeOutSpeed, done);
 				}
 				else {
